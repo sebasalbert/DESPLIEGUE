@@ -36,6 +36,7 @@ public class BookController {
         this.bookService = bookService;
     }
     
+    
     //GET /books - Status 200 OK automático
     @GetMapping
     public List<Book> getAllBooks() {
