@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.daw2.LibraryDAW.model.Book;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
@@ -26,4 +27,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     
     @Query("SELECT b FROM Book b WHERE LOWER(b.author) LIKE LOWER(CONCAT('%', :author, '%'))")
     List<Book> findBooksByAuthorContainingIgnoreCase(@Param("author") String author);
+
+
+	List<Book> findByTitleAndAuthor(String title, String author);
 }

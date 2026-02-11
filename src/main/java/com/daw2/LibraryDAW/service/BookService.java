@@ -1,5 +1,6 @@
 package com.daw2.LibraryDAW.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,15 @@ public class BookService {
     }
     
     public Book createBook(Book book) {
-        return bookRepository.save(book);
+    	 List<Book> books = new ArrayList<Book>();
+         books = bookRepository.findByTitleAndAuthor(book.getTitle(),book.getAuthor());
+         if (!books.isEmpty()) {
+             System.out.println("Ya existe un libro con mismo título y autor");
+             return null;
+         } else {
+             return bookRepository.save(book);
+         }
+
     }
     
     public Book updateBook(Long id, Book bookDetails) {
